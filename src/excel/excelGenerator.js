@@ -179,24 +179,8 @@ export function buildSheetData(metadata, products, options = {}) {
     // Serial number
     sheetCells[`A${rIdx}`] = createStyledCell(prodIdx + 1, { fontName, hasBorder: true });
     
-    // Description - slightly modified for dummy quotes to mimic manual typing
-    let desc = prod.description;
-    if (isQuoteA) {
-      desc = desc
-        .replace(/PAPERS|PAPER/g, 'PAPER')
-        .replace(/STATIONARIES|STATIONERY/g, 'STATIONERY')
-        .replace(/LASERJET/g, 'LJ')
-        .replace(/CATRIDGE/g, 'TONER')
-        .replace(/GOOD KNIGHT/g, 'GK')
-        .substring(0, 32);
-    } else if (isQuoteB) {
-      desc = desc
-        .replace(/PAPERS|PAPER/g, 'PPR')
-        .replace(/STATIONARIES|STATIONERY/g, 'STAT')
-        .replace(/LASERJET/g, 'LASER TONER')
-        .replace(/GOOD KNIGHT/g, 'GOODKNIGHT')
-        .substring(0, 28);
-    }
+    // Description
+    const desc = prod.description;
     sheetCells[`B${rIdx}`] = createStyledCell(desc.toUpperCase(), { fontName, hasBorder: true });
     
     // Quantity
